@@ -133,7 +133,7 @@ class _Search:
             return []
 
         lines: List[str] = self.lines_future.result()
-        r: Iterator[Tuple[int, str]] = ((l.find(query), l) for l in lines)
+        r: Iterator[Tuple[int, str]] = ((ln.find(query), ln) for ln in lines)
         r = filter(lambda x: x[0] != -1, r)
         r_list = sorted(r, key=lambda x: '{:4d} {}'.format(x[0], x[1]))
         symbols: List[FinancialSymbol] = [self.id2sym[x[1]] for x in r_list[:top]]
